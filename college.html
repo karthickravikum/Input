@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Message Form</title>
+  </head>
+  <body>
+    <h1>Send me a message</h1>
+    <form id="myForm">
+      <input type="text" id="message" placeholder="Type something..." required />
+      <button type="submit">Submit</button>
+    </form>
+
+    <script>
+      const form = document.getElementById("myForm");
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const message = document.getElementById("message").value;
+
+        fetch("https://webhook.site/8e388b42-26d8-4cd8-b3d3-cb3c85f932fd", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ userInput: message }),
+        });
+
+        alert("Message sent!");
+        form.reset();
+      });
+    </script>
+  </body>
+</html>
